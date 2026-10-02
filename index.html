@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="logo">NOVA<span>●</span></div>
+
+      <button class="new-chat" type="button">+ New Chat</button>
+
+      <nav>
+        <a href="#" class="active" id="chatNav">💬 Chat</a>
+        <a href="#" id="projectsNav">📁 Projects</a>
+        <a href="#" id="historyNav">🕘 History</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#" id="settingsNav">⚙️ Settings</a>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <h1>NOVA AI</h1>
+          <p><span class="status-dot"></span> Online</p>
+        </div>
+
+        <button class="menu-btn" type="button">☰</button>
+      </header>
+
+      <section class="chat">
+        <div class="welcome">
+          <div class="nova-orb">✦</div>
+          <h2>Hello, I'm NOVA.</h2>
+          <p>
+            Your intelligent digital assistant.
+            Ask me anything, build something, or start exploring.
+          </p>
+        </div>
+
+        <div id="messages"></div>
+      </section>
+
+      <div class="input-area">
+
+        <button class="icon-btn" id="attachBtn" type="button">＋</button>
+
+        <input
+          type="file"
+          id="fileInput"
+          hidden
+        >
+
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Message NOVA..."
+          autocomplete="off"
+        >
+
+        <button class="mic-btn" id="micBtn" type="button">🎤</button>
+
+        <button class="send-btn" id="sendBtn" type="button">➤</button>
+
+      </div>
+
+      <p class="disclaimer">
+        NOVA can make mistakes. Check important information.
+      </p>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
