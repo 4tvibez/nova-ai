@@ -65,22 +65,14 @@ async function getNovaResponse(question) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: question, history: localStorage.getItem("novaMemory") === "off" ? [] : conversation.slice(0, -1).slice(-12) })
     });
-    const raw = await response.text();
-    let data;
-    try { data = JSON.parse(raw); } catch (_) { data = { error: raw || "Unknown server response" }; }
-    if (!response.ok) {
-      const serverMessage = data.details || data.error || ("HTTP " + response.status);
-      throw new Error("HTTP " + response.status + ": " + serverMessage);
-    }
+    if (!response.ok) throw new Error("Server error");
+    const data = await response.json();
     updateNovaEmotion(data.emotion);
     return data.reply;
   } catch (error) {
     console.error("NOVA error:", error);
 
-    let details = error?.message || "Unknown connection error";
-    if (error?.name) details = error.name + ": " + details;
-
-    return "⚠️ NOVA backend error: " + details;
+    return "I couldn't connect to my AI backend. Please try again.";
   }
 }
 
