@@ -483,3 +483,29 @@ body.mood-annoyed .status-dot {
     padding: 22px;
   }
 }
+
+
+/* NOVA 2.0 QUICK ACTIONS */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+.quick-actions button,
+.project-action,
+.open-project {
+  border: 1px solid rgba(0, 183, 255, 0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: rgba(0, 183, 255, 0.08);
+  color: #dff7ff;
+  cursor: pointer;
+}
+.quick-actions button:hover,
+.project-action:hover,
+.open-project:hover {
+  background: rgba(0, 183, 255, 0.18);
+  border-color: rgba(0, 183, 255, 0.55);
+}
