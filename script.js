@@ -1,3 +1,4 @@
+const fence = "```";
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 const messages = document.getElementById("messages");
@@ -222,6 +223,17 @@ function renderGeneratedProject(project, fullReply) {
 }
 
 async function sendMessage(customQuestion = null) {
+  const isButtonRequest = customQuestion === null;
+  if (isButtonRequest && sendBtn.disabled) return;
+
+  if (isButtonRequest) {
+    sendBtn.disabled = true;
+    sendBtn.classList.add("sending");
+    sendBtn.setAttribute("aria-label", "NOVA is responding");
+    sendBtn.innerHTML = '<span class="send-spinner"></span>';
+  }
+
+  try {
   const question = (customQuestion || userInput.value).trim();
   if (!question) return;
 
@@ -264,6 +276,14 @@ async function sendMessage(customQuestion = null) {
   conversation.push({ role: "assistant", content: response });
   saveHistory();
   speak(response);
+  } finally {
+    if (isButtonRequest) {
+      sendBtn.disabled = false;
+      sendBtn.classList.remove("sending");
+      sendBtn.removeAttribute("aria-label");
+      sendBtn.innerHTML = "➤";
+    }
+  }
 }
 
 sendBtn.addEventListener("click", () => sendMessage());
