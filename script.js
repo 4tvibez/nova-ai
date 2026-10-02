@@ -51,7 +51,7 @@ async function getNovaResponse(question) {
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: question, history: conversation.slice(-12) })
+      body: JSON.stringify({ message: question, history: localStorage.getItem("novaMemory") === "off" ? [] : conversation.slice(0, -1).slice(-12) })
     });
     if (!response.ok) throw new Error("Server error");
     const data = await response.json();
