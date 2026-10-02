@@ -344,21 +344,3 @@ const savedTheme = localStorage.getItem("novaTheme");
 if (savedTheme === "light") document.body.classList.add("light-mode");
 
 loadHistory();
-
-
-function quickAction(type) {
-  const prompts = {
-    code: "Build me a small responsive HTML, CSS and JavaScript project. Explain the features and provide complete code.",
-    cv: "Help me create a professional junior frontend developer CV. Ask me for any missing information, then produce a polished CV.",
-    cover: "Help me write a professional cover letter for a remote junior frontend developer job. Ask for company and job details if needed.",
-    linkedin: "Write a short professional LinkedIn post about my latest web project. Make it confident, humble, and focused on learning and teamwork."
-  };
-  sendMessage(prompts[type]);
-}
-
-document.querySelectorAll(".quick-actions button").forEach(button => {
-  button.addEventListener("click", () => quickAction(button.dataset.action));
-});
-
-const savedTheme = localStorage.getItem("novaTheme");
-if (savedTheme === "light") document.body.classList.add("light-mode");
