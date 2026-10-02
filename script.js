@@ -14,10 +14,21 @@ const chatNav = document.getElementById("chatNav");
 const menuBtn = document.querySelector(".menu-btn");
 const sidebar = document.querySelector(".sidebar");
 
+function safeJSON(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (error) {
+    console.warn("NOVA storage reset:", key, error);
+    localStorage.removeItem(key);
+    return fallback;
+  }
+}
+
 let selectedFile = null;
 let voiceEnabled = localStorage.getItem("novaVoice") !== "off";
-let conversation = JSON.parse(localStorage.getItem("novaConversation") || "[]");
-let savedProjects = JSON.parse(localStorage.getItem("novaProjects") || "[]");
+let conversation = safeJSON("novaConversation", []);
+let savedProjects = safeJSON("novaProjects", []);
 
 function addMessage(text, type, persist = true) {
   const message = document.createElement("div");
