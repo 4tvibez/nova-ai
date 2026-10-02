@@ -71,7 +71,11 @@ async function getNovaResponse(question) {
     return data.reply;
   } catch (error) {
     console.error("NOVA error:", error);
-    return "I couldn't connect to my AI backend. Please try again.";
+
+    let details = error?.message || "Unknown connection error";
+    if (error?.name) details = error.name + ": " + details;
+
+    return "⚠️ NOVA backend error: " + details;
   }
 }
 
