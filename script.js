@@ -115,7 +115,7 @@ function parseGeneratedProject(text) {
 }
 
 function extractProjectTitle(html) {
-  const match = html.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i);
+  const match = html.match(/<title[^>]*>([\\s\\S]*?)<\/title>/i);
   return match ? match[1].trim() : "";
 }
 
@@ -123,14 +123,14 @@ function buildPreviewDocument(project) {
   let doc = project.html;
 
   if (project.css) {
-    doc = /<\\/head>/i.test(doc)
-      ? doc.replace(/<\\/head>/i, "<style>\\n" + project.css + "\\n</style>\\n</head>")
+    doc = /<\/head>/i.test(doc)
+      ? doc.replace(/<\/head>/i, "<style>\\n" + project.css + "\\n</style>\\n</head>")
       : "<style>\\n" + project.css + "\\n</style>\\n" + doc;
   }
 
   if (project.js) {
-    doc = /<\\/body>/i.test(doc)
-      ? doc.replace(/<\\/body>/i, "<script>\\n" + project.js + "\\n<\\/script>\\n</body>")
+    doc = /<\/body>/i.test(doc)
+      ? doc.replace(/<\/body>/i, "<script>\\n" + project.js + "\\n<\\/script>\\n</body>")
       : doc + "<script>\\n" + project.js + "\\n<\\/script>";
   }
 
