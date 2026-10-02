@@ -644,3 +644,28 @@ body.mood-annoyed .status-dot {
     flex: 1 1 100%;
   }
 }
+
+
+/* SEND BUTTON LOADING STATE */
+.send-btn:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.send-btn.sending {
+  transform: scale(0.96);
+}
+
+.send-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: novaSendSpin 0.7s linear infinite;
+}
+
+@keyframes novaSendSpin {
+  to { transform: rotate(360deg); }
+}
